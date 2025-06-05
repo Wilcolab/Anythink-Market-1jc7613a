@@ -20,3 +20,41 @@ The Anythink Market backend is Node web app written with [Express](https://expre
 ## Error Handling
 
 In `routes/api/index.js`, we define a error-handling middleware for handling Mongoose's `ValidationError`. This middleware will respond with a 422 status code and format the response to have [error messages the clients can understand](https://github.com/gothinkster/realworld/blob/master/API.md#errors-and-status-codes)
+
+## Comments API
+
+### DELETE `/api/comments/:id`
+
+Deletes a comment by its unique identifier.
+
+**Request Parameters:**
+
+- `id` (string, required): The unique identifier of the comment to be deleted.
+
+**Responses:**
+
+- `200 OK`: `{ "message": "Comment deleted successfully" }` — Comment was found and deleted.
+- `404 Not Found`: `{ "message": "Comment not found" }` — No comment with the specified ID exists.
+- `500 Internal Server Error`: `{ "message": "Internal server error" }` — Error occurred during deletion.
+
+**Example Request:**
+
+```
+DELETE /api/comments/60d21b4667d0d8992e610c85
+```
+
+**Example Success Response:**
+
+```json
+{
+  "message": "Comment deleted successfully"
+}
+```
+
+**Example Error Response (Not Found):**
+
+```json
+{
+  "message": "Comment not found"
+}
+```
